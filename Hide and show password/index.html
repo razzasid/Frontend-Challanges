@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>password</title>
+  </head>
+  <body>
+    <div class="input-box">
+      <input type="password" placeholder="password" id="password" />
+      <img src="eye-close.png" alt="eye-close-icon" id="eye-icon" />
+    </div>
+
+    <script>
+      const eyeIcon = document.getElementById("eye-icon");
+      const password = document.getElementById("password");
+
+      eyeIcon.addEventListener("click", () => {
+        if (password.type === "password") {
+          password.type = "text";
+          eyeIcon.src = "eye-open.png";
+        } else {
+          password.type = "password";
+          eyeIcon.src = "eye-close.png";
+        }
+      });
+    </script>
+  </body>
+</html>
