@@ -32,6 +32,7 @@
 
       for (list of lists) {
         list.addEventListener("dragstart", function (e) {
+          e.target.classList.add("dragging");
           let selected = e.target;
 
           rightBox.addEventListener("dragover", function (e) {
@@ -49,6 +50,10 @@
             leftBox.appendChild(selected);
             selected = null;
           });
+        });
+
+        list.addEventListener("dragend", function (e) {
+          e.target.classList.remove("dragging");
         });
       }
     </script>
