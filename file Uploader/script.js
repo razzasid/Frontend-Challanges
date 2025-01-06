@@ -9,17 +9,30 @@ form.addEventListener("click", (e) => {
 fileInput.addEventListener("change", function (event) {
   const uploadedFile = event.target.files[0];
 
-  const fileName = uploadedFile.name;
+  let fileName = uploadedFile.name;
 
-  getFileNameWithoutExtention(fileName);
+  if (uploadedFile) {
+    const fileNameWithoutExt = getFileNameWithoutExtention(fileName);
+
+    if (fileNameWithoutExt.length > 12) {
+      fileName =
+        fileNameWithoutExt.substring(0, 12) + "..." + getExtension(fileName);
+    }
+  }
 
   showSelectedFiles(fileName);
 });
 
 function getFileNameWithoutExtention(fileName) {
   //get index of the last
-  const lastIndex = fileName.lastIndexOf(",");
+  const lastIndex = fileName.lastIndexOf(".");
   console.log(lastIndex);
+  return fileName.substr(0, lastIndex);
+}
+
+function getExtension(fileName) {
+  const lastIndex = fileName.lastIndexOf(".");
+  return fileName.slice(lastIndex);
 }
 
 function showSelectedFiles(fileName) {
