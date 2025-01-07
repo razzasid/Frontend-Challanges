@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Mini calender</title>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="calendar">
+        <div class="left">
+          <p id="date"></p>
+          <p id="day"></p>
+        </div>
+        <div class="right">
+          <p id="month"></p>
+          <p id="year"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const date = document.getElementById("date");
+      const day = document.getElementById("day");
+      const month = document.getElementById("month");
+      const year = document.getElementById("year");
+
+      const today = new Date();
+
+      let currentDate = today.getDate();
+
+      const dayIndex = today.getDay();
+      const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      let currentDay = daysOfWeek[dayIndex];
+
+      const monthsOfaYear = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      let currentMonth = monthsOfaYear[today.getMonth()];
+
+      let currentYear = today.getFullYear();
+
+      date.textContent = (currentDate < 10 ? "0" : "") + currentDate;
+      day.textContent = currentDay;
+      month.textContent = currentMonth;
+      year.textContent = currentYear;
+    </script>
+  </body>
+</html>
