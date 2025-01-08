@@ -1,47 +1,52 @@
 const inputValue = document.getElementById("input");
 const form = document.getElementById("form");
 const submitBtn = document.getElementById("submit");
-const startGame = document.getElementById("startGame");
+const playAgain = document.getElementById("playAgain");
 const output = document.getElementById("output");
 const guessDisplay = document.getElementById("guessDisplay");
 let randomNmber = Math.floor(Math.random() * 101);
-console.log(randomNmber);
+// console.log(randomNmber);
 let previousGuesses = [];
 inputValue.focus();
 
-function guessNumber(event) {
+function onplayAgain(event) {
   event.preventDefault();
   inputValue.focus();
   let userGuess = inputValue.valueAsNumber;
   previousGuesses.push(userGuess);
+  guessDisplay.textContent = `Your Guesses: ${previousGuesses.join(", ")} `;
 
   if (userGuess > randomNmber) {
     output.textContent = "Too high!";
-    guessDisplay.textContent = `Your Guesses: ${previousGuesses.join(", ")},`;
   } else if (userGuess < randomNmber) {
     output.textContent = "Too Low!";
-    guessDisplay.textContent = `Your Guesses: ${previousGuesses.join(", ")}`;
   } else {
     output.textContent = "You Guessed it right!";
-    guessDisplay.textContent = `Your Guesses: ${previousGuesses.join(", ")} `;
-    startGame.disabled = false;
+    playAgain.disabled = false;
     submitBtn.disabled = true;
+    playAgain.focus();
   }
-
+  if (previousGuesses.length >= 10) {
+    output.textContent = "You lost! The number was " + randomNmber;
+    inputValue.disabled = true;
+    submitBtn.disabled = true;
+    playAgain.disabled = false;
+    playAgain.focus();
+  }
   inputValue.value = "";
 }
 
-function restartGame() {
+function replayAgain() {
   output.textContent = "";
   guessDisplay.textContent = ``;
-  startGame.disabled = true;
+  playAgain.disabled = true;
   submitBtn.disabled = false;
+  inputValue.disabled = false;
   randomNmber = Math.floor(Math.random() * 101);
   previousGuesses = [];
-  console.log(randomNmber);
+  //   console.log(randomNmber);
   inputValue.focus();
 }
 
-form.addEventListener("submit", guessNumber);
-submitBtn.addEventListener("click", guessNumber);
-startGame.addEventListener("click", restartGame);
+form.addEventListener("submit", onplayAgain);
+playAgain.addEventListener("click", replayAgain);
