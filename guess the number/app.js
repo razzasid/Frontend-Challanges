@@ -9,7 +9,7 @@ let randomNmber = Math.floor(Math.random() * 101);
 let previousGuesses = [];
 inputValue.focus();
 
-function onplayAgain(event) {
+function onplay(event) {
   event.preventDefault();
   inputValue.focus();
   let userGuess = inputValue.valueAsNumber;
@@ -36,7 +36,7 @@ function onplayAgain(event) {
   inputValue.value = "";
 }
 
-function replayAgain() {
+function onplayAgain() {
   output.textContent = "";
   guessDisplay.textContent = ``;
   playAgain.disabled = true;
@@ -48,5 +48,5 @@ function replayAgain() {
   inputValue.focus();
 }
 
-form.addEventListener("submit", onplayAgain);
-playAgain.addEventListener("click", replayAgain);
+form.addEventListener("submit", onplay);
+playAgain.addEventListener("click", onplayAgain);
