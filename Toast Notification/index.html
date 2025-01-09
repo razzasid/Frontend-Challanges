@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Toast Notification Or Snack Bar</title>
+  </head>
+  <body>
+    <div class="buttons">
+      <button onclick="showToast()">Success</button>
+      <button onclick="showToast()">Error</button>
+      <button onclick="showToast()">Invalid</button>
+    </div>
+
+    <div id="toastBox"></div>
+  </body>
+
+  <script>
+    let toastBox = document.getElementById("toastBox");
+
+    function showToast() {
+      let toast = document.createElement("div");
+      toast.classList.add("toast");
+      toast.innerHTML = "success";
+      toastBox.appendChild(toast);
+    }
+  </script>
+</html>
