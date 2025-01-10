@@ -8,57 +8,42 @@ const snakeCase = document.getElementById("snakecase");
 const kebabCase = document.getElementById("kebabcase");
 const trim = document.getElementById("trim");
 
+function normalizeString(str) {
+  return str.trim().replace(/\s+/g, " ");
+}
+
 function toCamelCase(str) {
-  return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    })
-    .replace(/\s+/g, "");
+  return normalizeString(str)
+    .toLowerCase()
+    .split(" ")
+    .reduce((a, b) => a + b[0]?.toUpperCase() + b.substring(1).toLowerCase());
 }
 
 function toPascalCase(str) {
+  if (!str.trim()) return ""; // Return an empty string if input is empty or only spaces
   return str
-    .replace(/\w+/g, function (word) {
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .replace(/\s+/g, "");
+    .toLowerCase()
+    .split(" ")
+    .filter((word) => word) // Remove empty strings from the array
+    .reduce(
+      (a, b) => a + b[0]?.toUpperCase() + b.substring(1).toLowerCase(),
+      ""
+    );
 }
 
 function toSnakeCase(str) {
-  return str
-    .trim() // Remove extra spaces from the start and end
-    .replace(/\s+/g, "_") // Replace spaces with underscores
-    .toLowerCase(); // Convert the entire string to lowercase
+  return normalizeString(str).split(" ").join("_");
 }
 
 function toKebabCase(str) {
-  return str
-    .trim() // Remove extra spaces from the start and end
-    .replace(/\s+/g, "-") // Replace spaces with underscores
-    .toLowerCase(); // Convert the entire string to lowercase
+  return normalizeString(str).split(" ").join("-");
 }
 
 function toTrim(str) {
-  return str
-    .trim() // Remove extra spaces from the start and end
-    .replace(/\s+/g, "") // Replace spaces with underscores
-    .toLowerCase(); // Convert the entire string to lowercase
+  return normalizeString(str).split(" ").join("");
 }
 
-function onLoad(input) {
-  lowerCase.textContent = input.toLowerCase();
-  upperCase.textContent = input.toUpperCase();
-  camelCase.textContent = toCamelCase(input);
-  pascalCase.textContent = toPascalCase(input);
-  snakeCase.textContent = toSnakeCase(input);
-  kebabCase.textContent = toKebabCase(input);
-  trim.textContent = toTrim(input);
-}
-
-form.addEventListener("input", (e) => {
-  e.preventDefault();
-
-  let inputValue = input.value;
+function updateTransformations(inputValue) {
   lowerCase.textContent = inputValue.toLowerCase();
   upperCase.textContent = inputValue.toUpperCase();
   camelCase.textContent = toCamelCase(inputValue);
@@ -66,6 +51,12 @@ form.addEventListener("input", (e) => {
   snakeCase.textContent = toSnakeCase(inputValue);
   kebabCase.textContent = toKebabCase(inputValue);
   trim.textContent = toTrim(inputValue);
+}
+
+input.addEventListener("input", (e) => {
+  e.preventDefault();
+  updateTransformations(input.value);
 });
 
-onLoad(input.value);
+// Initialize on page load
+updateTransformations(input.value || "");
