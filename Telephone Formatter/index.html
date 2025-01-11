@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Telephone formatter</title>
+  </head>
+  <body>
+    <div class="container">
+      <input
+        type="text"
+        maxlength="16"
+        id="phone"
+        placeholder="Mobile number"
+        autocomplete="off"
+      />
+      <label for="input">+(123) - 4567890</label>
+    </div>
+
+    <script>
+      const phone = document.getElementById("phone");
+
+      phone.addEventListener("input", (e) => {
+        let phoneStr = e.target.value;
+        let phoneArr = phoneStr.split("");
+        let formattedPhone;
+
+        if (phoneStr.length === 4) {
+          phone.value = "text";
+          phoneArr.unshift("+", "(");
+          phoneArr.splice(5, 0, ")", " ", "-", " ");
+          formattedPhone = phoneArr.join("");
+          phone.value = formattedPhone;
+          console.log(formattedPhone);
+        }
+      });
+    </script>
+  </body>
+</html>
