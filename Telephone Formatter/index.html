@@ -23,33 +23,36 @@
       let previousValue = "";
 
       phone.addEventListener("input", (e) => {
-        let phoneStr = e.target.value;
-        let phoneArr = phoneStr.split("");
+        let inputValue = e.target.value;
+        let inputArray = inputValue.split("");
         let formattedPhone;
-        // console.log(previousValue, phoneStr);
+        // console.log(previousValue, inputValue);
 
-        if (/\d+$/g.test(phoneStr)) {
-          phone.value = phoneStr;
+        if (/\d+$/g.test(inputValue)) {
+          phone.value = inputValue;
         } else {
-          phone.value = phoneStr.substring(0, phoneStr.length - 1);
+          phone.value = inputValue.substring(0, inputValue.length - 1);
         }
 
-        if (phoneStr.length === 4 && previousValue.length < phoneStr.length) {
-          phoneArr.unshift("+", "(");
-          phoneArr.splice(5, 0, ")", " ", "-", " ");
-          formattedPhone = phoneArr.join("");
+        if (
+          inputValue.length === 4 &&
+          previousValue.length < inputValue.length
+        ) {
+          inputArray.unshift("+", "(");
+          inputArray.splice(5, 0, ")", " ", "-", " ");
+          formattedPhone = inputArray.join("");
           phone.value = formattedPhone;
         } else if (
-          phoneStr.length === 9 &&
-          previousValue.length > phoneStr.length
+          inputValue.length === 9 &&
+          previousValue.length > inputValue.length
         ) {
-          phoneArr.shift();
-          phoneArr.shift();
-          phoneArr.splice(3, 4);
-          formattedPhone = phoneArr.join("");
+          inputArray.shift();
+          inputArray.shift();
+          inputArray.splice(3, 4);
+          formattedPhone = inputArray.join("");
           phone.value = formattedPhone;
         }
-        previousValue = phoneStr;
+        previousValue = inputValue;
       });
     </script>
   </body>
