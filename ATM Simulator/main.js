@@ -6,17 +6,17 @@ const checkBalace = document.getElementById("checkBalance");
 const deposit = document.getElementById("deposit");
 const withdraw = document.getElementById("withdraw");
 let balance = 1000;
-let isLogOut = false;
+let isAuthenticated = false;
 
 function logIn(pin) {
   //   console.log(pin);
   if (pin === "1234") {
     output.textContent = "Login successful.";
     logOut.disabled = false;
-    isLogOut = true;
+    isAuthenticated = true;
   } else {
     output.textContent = "Invalid PIN. Please try again.";
-    isLogOut = false;
+    isAuthenticated = false;
   }
 }
 
@@ -28,13 +28,13 @@ submitBtn.addEventListener("click", () => {
 });
 
 logOut.addEventListener("click", () => {
-  isLogOut = false;
+  isAuthenticated = false;
   logOut.disabled = true;
   output.textContent = "Logged out successfully.";
 });
 
 checkBalace.addEventListener("click", () => {
-  if (isLogOut) {
+  if (isAuthenticated) {
     output.textContent = `Your balance is ${balance}`;
   } else {
     output.textContent = `Please login first.`;
@@ -42,7 +42,7 @@ checkBalace.addEventListener("click", () => {
 });
 
 deposit.addEventListener("click", () => {
-  if (isLogOut) {
+  if (isAuthenticated) {
     let depositAmnt = parseInt(prompt("Enter the amount to deposit:"));
     console.log(depositAmnt);
 
@@ -58,7 +58,7 @@ deposit.addEventListener("click", () => {
 });
 
 withdraw.addEventListener("click", () => {
-  if (isLogOut) {
+  if (isAuthenticated) {
     let withdrawAmnt = parseInt(prompt("Enter the amount to withdraw:"));
     console.log(withdrawAmnt);
 
