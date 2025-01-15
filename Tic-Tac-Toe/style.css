@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.2rem;
+}
+
+.cell {
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#reset {
+  padding: 10px 16px;
+  background-color: #0ff;
+  border: 1px solid grey;
+  border-radius: 4px;
+  cursor: pointer;
+}
