@@ -1,6 +1,8 @@
 const cells = document.querySelectorAll(".cell");
+const reset = document.getElementById("reset");
 let player = "x";
-let grid = [];
+let grid = ["", "", "", "", "", "", "", "", ""];
+let output = document.getElementById("output");
 const winningCombinations = [
   [0, 1, 2], // Top row
   [3, 4, 5], // Middle row
@@ -25,29 +27,33 @@ function checkWinner() {
 cells.forEach((cell, index) => {
   cell.addEventListener("click", () => {
     if (!cell.textContent) {
-      // Prevent overwriting
+      // Update cell and grid
       cell.textContent = player === "x" ? "X" : "O";
-      grid[index] = player; // Update the 1D grid array
-      player = player === "x" ? "o" : "x"; // Switch player
+      grid[index] = player;
+
+      // Check for a winner
+      const winner = checkWinner();
+      if (winner) {
+        output.textContent = `${winner.toUpperCase()} Wins!`;
+        cells.forEach((cell) => (cell.disabled = true)); // Disable further moves
+      }
+      // Check for a draw
+      else if (!grid.includes("")) {
+        output.textContent = "It's a Draw!";
+      }
+
+      // Switch player
+      player = player === "x" ? "o" : "x";
     }
   });
 });
 
-cells.forEach((cell, index) => {
-  cell.addEventListener("click", () => {
-    if (!cell.textContent) {
-      cell.textContent = player === "x" ? "X" : "O";
-      grid[index] = player;
-      const winner = checkWinner();
-      if (winner) {
-        document.getElementById(
-          "winner"
-        ).textContent = `${winner.toUpperCase()} Wins!`;
-        cells.forEach((cell) => (cell.disabled = true)); // Disable further clicks
-      } else if (!grid.includes("")) {
-        document.getElementById("winner").textContent = "It's a Draw!";
-      }
-      player = player === "x" ? "o" : "x";
-    }
+reset.addEventListener("click", () => {
+  grid = ["", "", "", "", "", "", "", "", ""];
+  player = "x";
+  output.textContent = "";
+  cells.forEach((cell) => {
+    cell.disabled = false;
+    cell.textContent = "";
   });
 });
