@@ -36,9 +36,9 @@ function andTheWinnerIs() {
     return (gameIsOn = false);
   }
 
-  //if Computer Wins
+  //if bot Wins
   else if (winner === "o") {
-    output.textContent = `You lose computer Wins!`;
+    output.textContent = `You lose bot Wins!`;
     cells.forEach((cell) => (cell.disabled = true)); // Disable further moves
     return (gameIsOn = false);
   }
@@ -50,7 +50,7 @@ function andTheWinnerIs() {
   }
 }
 
-function computerMove() {
+function botMove() {
   if (gameIsOn) {
     setTimeout(() => {
       const emptySpots = grid
@@ -87,9 +87,9 @@ cells.forEach((cell, index) => {
       userTurn = false;
       andTheWinnerIs();
 
-      // Start computer's turn if game isn't over
+      // Start bot's turn if game isn't over
       if (gameIsOn) {
-        computerMove();
+        botMove();
       }
     }
   });
