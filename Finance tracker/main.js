@@ -9,7 +9,6 @@ const totalIncome = document.getElementById("total-income");
 const totalExpense = document.getElementById("total-expense");
 
 let balance = 0;
-let transactionId = 1;
 let totalIncomeValue = 0;
 let totalExpenseValue = 0;
 
@@ -17,10 +16,10 @@ function updateBalance() {
   balanceAmount.textContent = `$${balance.toFixed(2)}`;
 }
 
-function addTransactionList(description, amount, type, transactionId) {
+function addTransactionList(description, amount, type) {
   transactionList.insertAdjacentHTML(
     "beforeend",
-    `<div class="list-with-delete" data-id="${transactionId}">
+    `<div class="list-with-delete">
       <li class=${type}>
         <span>${description}</span><span>$${amount}</span>
       </li>
@@ -29,41 +28,51 @@ function addTransactionList(description, amount, type, transactionId) {
   );
 
   balance += type === "income" ? amount : -amount;
-  localStorage.setItem("balance", balance);
+  localStorage.setItem("balance", balance.toString());
   if (type === "income") {
     totalIncomeValue += amount;
-    localStorage.setItem("total income", totalIncomeValue);
+    localStorage.setItem("total income", totalIncomeValue.toString());
     totalIncome.textContent = `$${totalIncomeValue.toFixed(2)}`;
   } else {
     totalExpenseValue += amount;
+    localStorage.setItem("total expense", totalExpenseValue.toString());
     totalExpense.textContent = `$${totalExpenseValue.toFixed(2)}`;
-    localStorage.setItem("total expense", totalExpenseValue);
   }
 
   updateBalance();
 }
 
 function saveData() {
-  localStorage.setItem("listdata", transactionList.innerHTML);
+  try {
+    localStorage.setItem("listData", transactionList.innerHTML);
+  } catch (error) {
+    console.error("Failed to save data:", error);
+    alert("Unable to save transaction. Storage may be full or disabled.");
+  }
 }
 
 function showData() {
-  const listdata = localStorage.getItem("listdata");
-  const balanceData = parseFloat(localStorage.getItem("balance")) || 0;
-  const incomeData = parseFloat(localStorage.getItem("total income")) || 0;
-  const expenseData = parseFloat(localStorage.getItem("total expense")) || 0;
+  try {
+    const listData = localStorage.getItem("listData");
+    const balanceData = parseFloat(localStorage.getItem("balance")) || 0;
+    const incomeData = parseFloat(localStorage.getItem("total income")) || 0;
+    const expenseData = parseFloat(localStorage.getItem("total expense")) || 0;
+    balance = balanceData;
+    totalIncomeValue = incomeData;
+    totalExpenseValue = expenseData;
 
-  balance = balanceData;
-  totalIncomeValue = incomeData;
-  totalExpenseValue = expenseData;
-
-  if (listdata) {
-    transactionList.innerHTML = listdata;
-    balanceAmount.textContent = `$${balanceData.toFixed(2)}`;
-    totalIncome.textContent = `$${incomeData.toFixed(2)}`;
-    totalExpense.textContent = `$${expenseData.toFixed(2)}`;
+    if (listData) {
+      transactionList.innerHTML = listData;
+      balanceAmount.textContent = `$${balanceData.toFixed(2)}`;
+      totalIncome.textContent = `$${incomeData.toFixed(2)}`;
+      totalExpense.textContent = `$${expenseData.toFixed(2)}`;
+    }
+  } catch (error) {
+    console.error("Failed to load data:", error);
+    alert("Unable to load saved transactions.");
   }
 }
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const description = descriptionInput.value;
@@ -80,9 +89,8 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
-  addTransactionList(description, amount, type, transactionId);
+  addTransactionList(description, amount, type);
   saveData();
-  transactionId++;
   descriptionInput.value = "";
   amountInput.value = "";
   transactionTypeInput.value = "none";
@@ -92,7 +100,9 @@ transactionList.addEventListener("click", (event) => {
   if (event.target.closest(".delete")) {
     const transactionDiv = event.target.closest(".list-with-delete");
     const transactionAmount = parseFloat(
-      transactionDiv.querySelector("li span:nth-child(2)").textContent
+      transactionDiv
+        .querySelector("li span:nth-child(2)")
+        .textContent.replace("$", "")
     );
     const transactionType = transactionDiv.querySelector("li").className;
 
@@ -113,7 +123,6 @@ transactionList.addEventListener("click", (event) => {
     }
 
     saveData();
-    // Remove the transaction from the DOM
     transactionDiv.remove();
   }
 });
