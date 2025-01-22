@@ -154,6 +154,7 @@ button:hover {
 }
 
 li {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -162,14 +163,41 @@ li {
   background-color: #1f3140;
   color: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   animation: fadeIn 0.5s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
 
-li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  padding: 1rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.delete:hover {
+  background: rgb(248, 39, 39);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.delete i {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.list-with-delete {
+  display: flex;
+  align-items: center;
 }
 
 .income {
@@ -178,6 +206,12 @@ li:hover {
 
 .expense {
   color: #dc3545;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
 }
 
 @keyframes fadeIn {
