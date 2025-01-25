@@ -11,26 +11,40 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script
+      src="https://kit.fontawesome.com/1aee638104.js"
+      crossorigin="anonymous"
+    ></script> -->
 
     <title>Frontend Mentor | Age calculator app</title>
   </head>
   <body>
     <div class="container">
       <div class="input-fields">
-        <label for="day">DAY</label>
-        <input type="number" id="day" />
-        <label for="month">MONTH</label>
-        <input type="number" id="month" />
-        <label for="year">DAY</label>
-        <input type="number" id="year" />
+        <div class="input">
+          <label for="day">DAY</label>
+          <input type="number" id="day" placeholder="DD" />
+        </div>
+        <div class="input">
+          <label for="month">MONTH</label>
+          <input type="number" id="month" placeholder="MM" />
+        </div>
+        <div class="input">
+          <label for="year">YEAR</label>
+          <input type="number" id="year" placeholder="YYYY" />
+        </div>
       </div>
-      <hr>
-
+      <div class="horizontal-line">
+        <hr />
+        <div class="circle" id="btn">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+      </div>
       <div class="output">
-        <h1><span id="years">38</span>years</h1>
-        <h1><span id="months">2</span>months</h1>
-        <h1><span id="days">26</span>days</h1>
+        <h1><span class="highlight" id="years">--</span> years</h1>
+        <h1><span class="highlight" id="months">--</span> months</h1>
+        <h1><span class="highlight" id="days">--</span> days</h1>
       </div>
     </div>
     <!-- Day DD Month MM Year YYYY -- years -- months -- days -->
@@ -41,5 +55,6 @@
         >Frontend Mentor</a
       >. Coded by <a href="#">Your Name Here</a>.
     </div> -->
+    <script src="index.js"></script>
   </body>
 </html>

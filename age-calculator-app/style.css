@@ -1,6 +1,131 @@
+@import url(assets/fonts/Poppins-BoldItalic.ttf);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: hsl(0, 0%, 86%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 2.3rem;
+  border-radius: 1.5em;
+  border-bottom-right-radius: 8em;
+  margin: 3em;
+}
+.input {
+  width: 100%;
+  max-width: 100px;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+}
+
+.input-fields {
+  display: flex;
+  gap: 1.5em;
+}
+
+hr {
+  height: 0;
+  margin-block: 2em;
+  width: 80%;
+  border: 0.1px solid #e3e3e3;
+}
+
+.horizontal-line {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input label {
+  width: 50%;
+  font-size: 0.8rem;
+  color: hsl(0, 0%, 42%);
+  font-weight: bold;
+}
+
+.circle {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+  background: hsl(259, 100%, 65%);
+}
+
+.circle:hover {
+  cursor: pointer;
+  background: #000;
+  transition: 0.1s ease-in;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e3e3e3;
+  margin-top: 0.5em;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+input:hover,
+input:active,
+input:focus {
+  border: 1px solid hsl(259, 100%, 24%);
+  cursor: pointer;
+  outline: none;
+}
+
+.output {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: url(assets/fonts/Poppins-BoldItalic.ttf);
+}
+.highlight {
+  color: hsl(259, 100%, 65%);
+}
+
+@media (max-width: 600px) {
+  .container {
+    border-bottom-right-radius: 6em;
+  }
+  .output {
+    font-size: 1.5rem;
+    margin-top: 0.5em;
+  }
+
+  .input-fields {
+    margin-bottom: 1em;
+  }
+
+  .horizontal-line {
+    position: relative;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .circle {
+    position: absolute;
+    margin-block: 2em;
+    width: 50px;
+    height: 50px;
+  }
 }
