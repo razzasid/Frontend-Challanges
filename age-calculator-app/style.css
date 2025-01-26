@@ -1,4 +1,8 @@
-@import url(assets/fonts/Poppins-BoldItalic.ttf);
+@font-face {
+  font-family: "Poppins";
+
+  src: url("assets/fonts/Poppins-ExtraBoldItalic.ttf") format("ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -58,16 +62,25 @@ hr {
 }
 
 .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 7rem;
   height: 7rem;
   border-radius: 100%;
+  /* border: 2px solid red; */
   background: hsl(259, 100%, 65%);
+}
+
+.circle i {
+  font-size: 4rem;
 }
 
 .circle:hover {
   cursor: pointer;
   background: #000;
   transition: 0.1s ease-in;
+  color: white;
 }
 
 input {
@@ -91,7 +104,7 @@ input:focus {
 .output {
   font-size: 2.5rem;
   font-weight: 800;
-  font-family: url(assets/fonts/Poppins-BoldItalic.ttf);
+  font-family: "Poppins", sans-serif;
 }
 .highlight {
   color: hsl(259, 100%, 65%);
