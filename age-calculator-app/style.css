@@ -108,16 +108,16 @@ input:focus {
 }
 
 .error {
-  color: rgb(255, 24, 24) !important;
+  color: hsl(0, 100%, 67%) !important;
 }
 
 .input-error input {
-  border: 1px solid rgb(255, 24, 24);
+  border: 1px solid hsl(0, 100%, 67%);
 }
 
 .error-empty {
   font-size: 0.6rem;
-  color: rgb(255, 24, 24);
+  color: hsl(0, 100%, 67%);
 }
 
 @media (max-width: 600px) {
