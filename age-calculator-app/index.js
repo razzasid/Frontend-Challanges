@@ -95,6 +95,8 @@ calculateButton.addEventListener("click", () => {
   // Validate date
   if (!isValidDate(birthDay, birthMonth, birthYear)) {
     addErrorState(dayInput.parentElement, "Must be a valid date");
+    addErrorState(monthInput.parentElement, "Must be a valid month");
+    addErrorState(yearInput.parentElement, "Must be in the past");
     return;
   }
 

@@ -108,23 +108,25 @@ input:focus {
 }
 
 .error {
-  color: red !important;
+  color: rgb(255, 24, 24) !important;
 }
 
 .input-error input {
-  border: 1px solid red;
+  border: 1px solid rgb(255, 24, 24);
 }
 
 .error-empty {
   font-size: 0.6rem;
-  color: red;
+  color: rgb(255, 24, 24);
 }
+
 @media (max-width: 600px) {
   .container {
     border-bottom-right-radius: 6em;
   }
+
   .output {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-top: 0.5em;
   }
 
