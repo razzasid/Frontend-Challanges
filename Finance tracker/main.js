@@ -18,6 +18,7 @@ function updateBalance() {
 
 // Update totals (income or expense)
 function updateTotals(amount, type, isAddition = true) {
+  localStorage.setItem("balance", balance.toString());
   if (type === "income") {
     totalIncomeValue += isAddition ? amount : -amount;
     totalIncome.textContent = `$${totalIncomeValue.toFixed(2)}`;
@@ -113,8 +114,9 @@ transactionList.addEventListener("click", (event) => {
       transactionType === "income" ? transactionAmount : -transactionAmount;
     updateTotals(transactionAmount, transactionType, false);
     updateBalance();
-    saveData();
+
     transactionDiv.remove();
+    saveData();
   }
 });
 
