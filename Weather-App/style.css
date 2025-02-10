@@ -168,8 +168,15 @@ body {
   }
 }
 @media (max-width: 470px) {
-  .weather {
-    font-size: 0.3rem;
+  .humidity,
+  .wind {
+    font-size: 15px;
+    margin-top: -3px;
+  }
+
+  .wind-speed,
+  .humidity-out {
+    font-size: 10px;
   }
   .search input {
     height: 30px; /* Further reduce height for small screens */
