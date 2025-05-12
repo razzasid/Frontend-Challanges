@@ -69,7 +69,7 @@ fetch("data.json")
     return response.json();
   })
   .then((data) => {
-    console.log(data);
+    // console.log(data);
 
     data.forEach((item) => {
       gridContainer.innerHTML += `
