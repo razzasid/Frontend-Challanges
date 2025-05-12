@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mentor | Browser extensions manager UI</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="assets/images/logo.svg" alt="logo" class="logo" />
+
+        <button class="theme-changer-btn" id="toggle-btn">
+          <img
+            src="assets/images/icon-moon.svg"
+            alt="theme toggle icon"
+            id="theme-change-icon"
+          />
+        </button>
+      </header>
+
+      <main>
+        <div class="extentions-list">
+          <h2>Extensions List</h2>
+          <div class="filter-controls">
+            <button id="show-all">All</button>
+            <button id="show-active">Active</button>
+            <button id="show-inactive">Inactive</button>
+          </div>
+        </div>
+
+        <div class="extenstions-grid" id="grid-container">
+          <!-- <div class="extention-box">
+            <div class="extention-main">
+              <div class="extention-icon">
+                <img src="assets/images/logo-devlens.svg" alt="DevLens-logo" />
+              </div>
+              <div class="extention-details">
+                <h2>DevLens</h2>
+                <p class="extention-description">
+                  Quickly inspect page layouts and visualize element boundaries.
+                </p>
+              </div>
+            </div>
+
+            <div class="extention-bottom">
+              <button class="remove-btn">Remove</button>
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div> -->
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
